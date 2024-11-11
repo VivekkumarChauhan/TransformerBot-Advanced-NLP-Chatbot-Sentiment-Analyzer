@@ -1,0 +1,17 @@
+nlp_project/
+│
+├── chatbot/  
+│   ├── app.py                   # Flask backend for chatbot
+│   ├── model.py                 # Model loading and inference for chatbot
+│   ├── requirements.txt         # Python dependencies for chatbot
+│   └── templates/
+│       └── index.html           # Frontend chatbot interface (Flask)
+│
+├── sentiment_analysis/
+│   ├── app.py                   # Streamlit app for sentiment analysis
+│   ├── model.py                 # Model loading for sentiment analysis
+│   ├── requirements.txt         # Python dependencies for sentiment analysis
+│
+├── Dockerfile                   # Dockerfile to containerize the app
+├── README.md                    # Project documentation
+└── .gitignore                   # Ignoring unnecessary files

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #chat-box { border: 1px solid #ddd; padding: 10px; height: 300px; overflow-y: scroll; }
+        #user-input { width: 80%; padding: 10px; }
+        #send-btn { padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <div id="chat-box"></div>
+    <input id="user-input" placeholder="Type your message">
+    <button id="send-btn">Send</button>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        function appendMessage(sender, message) {
+            const p = document.createElement('p');
+            p.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatBox.appendChild(p);
+        }
+
+        sendBtn.addEventListener('click', async () => {
+            const message = userInput.value;
+            appendMessage('You', message);
+            userInput.value = '';
+
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            });
+            const data = await response.json();
+            appendMessage('Bot', data.response);
+        });
+    </script>
+</body>
+</html>
